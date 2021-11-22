@@ -1,10 +1,8 @@
 <template>
   <v-app>
-    <v-app-bar
-      app
-      color="primary"
-      dark
-    >
+    <v-app-bar app color="primary" dark>
+      <h2>{{ obj }}</h2>
+      <h2 @click="firstAction">{{ firstState }}</h2>
       <div class="d-flex align-center">
         <v-img
           alt="Vuetify Logo"
@@ -38,23 +36,36 @@
     </v-app-bar>
 
     <v-main>
-      <HelloWorld/>
+      <HelloWorld />
     </v-main>
   </v-app>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld';
-
+import HelloWorld from "./components/HelloWorld";
+import { mapState, mapActions } from "vuex";
+// mapState
+// mapActions
+// mapMutations
+// mapGetters
 export default {
-  name: 'App',
+  name: "App",
 
   components: {
     HelloWorld,
   },
 
+  computed: {
+    ...mapState({
+      firstState: (state) => state.auth.firstState,
+    }),
+  },
+
   data: () => ({
-    //
+    obj: "Rajvel",
   }),
+  methods: {
+    ...mapActions(["firstAction"]),
+  },
 };
 </script>
